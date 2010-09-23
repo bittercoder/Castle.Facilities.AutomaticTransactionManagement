@@ -57,5 +57,24 @@ namespace Castle.Facilities.AutoTx.Tests
 			
 			Assert.AreEqual(TransactionStatus.Active, tm.CurrentTransaction.Status);
 		}
+
+
+        [Transaction(TransactionMode.Requires)]
+        public virtual void DoSomethingNotMarkedAsReadOnly()
+        {
+            ITransactionManager tm = kernel.Resolve<ITransactionManager>();
+            Assert.IsNotNull(tm.CurrentTransaction);
+            Assert.IsFalse(tm.CurrentTransaction.IsReadOnly);
+        }
+
+        [Transaction(TransactionMode.Requires, ReadOnly = true)]
+        public virtual void DoSomethingReadOnly()
+        {
+            ITransactionManager tm = kernel.Resolve<ITransactionManager>();
+            Assert.IsNotNull(tm.CurrentTransaction);
+            Assert.IsTrue(tm.CurrentTransaction.IsReadOnly);
+        }
+
+        
 	}
 }

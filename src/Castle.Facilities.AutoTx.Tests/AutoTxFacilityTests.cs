@@ -66,6 +66,21 @@ namespace Castle.Facilities.AutoTx.Tests
 			Assert.AreEqual(0, transactionManager.RolledBackCount);
 		}
 
+        [Test]
+        public void TestReadonlyTransactions()
+        {
+            IWindsorContainer container = new WindsorContainer();
+
+            container.AddFacility("transactionmanagement", new TransactionFacility());
+            container.Register(Component.For<ITransactionManager>().ImplementedBy<MockTransactionManager>().Named("transactionmanager"));
+            container.Register(Component.For<CustomerService>().Named("mycomp"));
+
+            CustomerService service = container.Resolve<CustomerService>();
+            service.DoSomethingNotMarkedAsReadOnly();
+            service.DoSomethingReadOnly();
+        }
+
+
 		[Test]
 		public void FileAndDirectoryAdapterResolveManager()
 		{

@@ -98,7 +98,8 @@ namespace Castle.Facilities.AutoTx
 				ITransactionManager manager = kernel.Resolve<ITransactionManager>();
 
 				ITransaction transaction = manager.CreateTransaction(
-					transactionAtt.TransactionMode, transactionAtt.IsolationMode, transactionAtt.Distributed);
+					transactionAtt.TransactionMode, transactionAtt.IsolationMode, transactionAtt.Distributed,
+                    transactionAtt.ReadOnly);
 
 				if (transaction == null)
 				{
