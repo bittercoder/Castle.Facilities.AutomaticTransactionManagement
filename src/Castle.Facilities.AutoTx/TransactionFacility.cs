@@ -122,7 +122,7 @@ namespace Castle.Facilities.AutoTx
 		/// <summary>
 		/// Disposes the facilitiy.
 		/// </summary>
-		public override void Dispose()
+		protected override void Dispose()
 		{
 			Kernel.ComponentRegistered -= Kernel_ComponentRegistered;
 			base.Dispose();
