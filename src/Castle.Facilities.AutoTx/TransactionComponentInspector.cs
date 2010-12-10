@@ -189,8 +189,9 @@ namespace Castle.Facilities.AutoTx
 				return;
 			}
 
-			model.Dependencies.Add(
-				new DependencyModel(DependencyType.Service, null, typeof(TransactionInterceptor), false));
+			var dpm = new DependencyModel(DependencyType.Service, typeof(TransactionInterceptor).FullName, typeof(TransactionInterceptor), false);
+
+			model.Dependencies.Add(dpm);
 
 			model.Interceptors.AddFirst(new InterceptorReference(typeof(TransactionInterceptor)));
 		}

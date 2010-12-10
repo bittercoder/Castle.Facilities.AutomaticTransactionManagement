@@ -1,3 +1,9 @@
+2.5.0 (2010-12-10)
+==================
+Updated to Core and Windsor 2.5.2
+Updated to Services.Transaction 2.5.0
+Included NET40 binaries on the release package
+
 2010-04-01
 ==========
 Both version 2.0 and version 2.1 compile and work well, but version 2.1 is actually compiled
